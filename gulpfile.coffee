@@ -6,6 +6,8 @@ rename       = require 'gulp-rename'
 coffee       = require 'gulp-coffee'
 jade         = require 'gulp-jade'
 connect      = require 'gulp-connect'
+react        = require 'gulp-react'
+
 
 gulp.task 'css', ->
   gulp.src            './src/stylesheets/*.sass'
@@ -28,6 +30,12 @@ gulp.task 'js', ->
   .pipe gulp.dest './dest/js'
   .pipe connect.reload()
 
+gulp.task 'react', ->
+  gulp.src './src/js/**/*.jsx'
+  .pipe react()
+  .pipe gulp.dest './dest/js'
+  .pipe connect.reload()
+
 gulp.task 'connect', ->
   connect.server
     root: 'dest',
@@ -44,11 +52,13 @@ gulp.task 'watch', ->
   gulp.watch "./src/js/**"
   .on 'change', ->
     gulp.run 'js'
+    gulp.run 'react'
 
 
 gulp.task 'default', ->
   gulp.run 'css'
   gulp.run 'html'
   gulp.run 'js'
+  gulp.run 'react'
   gulp.run 'connect'
   gulp.run 'watch'
