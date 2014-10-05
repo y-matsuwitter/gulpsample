@@ -1,7 +1,13 @@
 html
   head
-  body
-    .header
-      h1 test
-    .main
-      h2 test
+    link(type="text/css", rel="stylesheet", media="all", href="/stylesheets/bootstrap.min.css")
+    link(type="text/css", rel="stylesheet", media="all", href="/stylesheets/main.min.css")
+  body(role="document")
+    .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+      .container
+        a.navbar-brand React test
+    .container(role="main")
+      #timer
+      #todo
+
+    script(type="text/javascript", src="/js/main.js")
